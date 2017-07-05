@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Ninja Class II</title>
+    <script type="text/javascript">
+      function Ninja(name) {
+        // self = this;
+        this.name = name;
+        this.health = 100;
+        var speed = 3;
+        var strength = 3;
+        this.sayName = function() {
+          console.log("My ninja name is " + self.name + "!");
+        }
+        this.showStats = function() {
+          console.log("Name: " + this.name + ", Health: " + this.health +
+          ", Speed: " + speed + ", Strength: " + strength);
+        }
+        this.drinkSake = function() {
+          this.health += 10;
+          console.log(this.name + " is drinking sake!");
+        }
+        this.getStrength = function() {
+          return strength;
+        }
+      }
+
+      // var ninja1 = new Ninja("Zatoichi");
+      // ninja1.sayName();
+      // ninja1.showStats();
+      // ninja1.drinkSake();
+      // ninja1.showStats();
+
+      Ninja.prototype.punch = function(punched_ninja) {
+        if (!(punched_ninja instanceof Ninja)) {
+          console.log("Punched object is not a Ninja!");
+        }
+        else {
+          console.log(punched_ninja.name + " was punched by " + this.name +
+            " and lost 5 Health!");
+          punched_ninja.health -= 5;
+        }
+      }
+
+      var blue_ninja = new Ninja("Goemon");
+      var red_ninja = new Ninja("Bill Gates");
+
+      red_ninja.punch(blue_ninja);
+      blue_ninja.showStats();
+
+      Ninja.prototype.kick = function(kicked_ninja) {
+        if (!(kicked_ninja instanceof Ninja)) {
+          console.log("Kicked object is not a Ninja!");
+        }
+        else {
+          let damage = 5*this.getStrength();
+          console.log(kicked_ninja.name + " was kicked by " + this.name +
+            " and lost " + damage + " Health!");
+          kicked_ninja.health -= damage;
+        }
+      }
+
+      blue_ninja.kick(red_ninja);
+      red_ninja.showStats();
+
+      var green_ninja = {a:5};
+      red_ninja.punch(green_ninja);
+      blue_ninja.kick(green_ninja);
+
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>
